@@ -20,11 +20,14 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await res.json();
 
@@ -33,13 +36,14 @@ export default function LoginPage() {
         return;
       }
 
-      // ✅ ONLY AUTH DATA (NO WIPE)
+      // ✅ SAVE AUTH DATA
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
-      localStorage.setItem("email", data.email);
+      localStorage.setItem("email", data.user?.email || email);
 
+      // ✅ REDIRECT
       router.push("/dashboard");
-    } catch (error) {
+    } catch (err) {
       alert("Server error. Try again");
     } finally {
       setLoading(false);
