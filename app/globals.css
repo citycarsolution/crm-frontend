@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   ROOT & LAYOUT FIX (🔥 MOST IMPORTANT – DO NOT REMOVE)
+   ===================================================== */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden; /* 🔥 Right side white gap fix */
+}
+
+/* Prevent child elements from causing overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   GLOBAL DARK BACKGROUND
+   ===================================================== */
+
+body {
+  background: radial-gradient(
+    circle at top left,
+    #0f172a,
+    #020617
+  );
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+/* =====================================================
+   GLASS EFFECT (USED EVERYWHERE)
+   ===================================================== */
+
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* =====================================================
+   INPUT / SELECT / TEXTAREA (DARK UI SAFE)
+   ===================================================== */
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.35);
+}
+
+/* =====================================================
+   SELECT DROPDOWN FIX (🔥 CATEGORY / ROLE ISSUE FIX)
+   ===================================================== */
+
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='white' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+select.input option {
+  background-color: #020617;
+  color: #ffffff;
+}
+
+/* =====================================================
+   TABLE SAFETY (NO HORIZONTAL SCROLL)
+   ===================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  white-space: nowrap;
+}
+
+/* =====================================================
+   SCROLLBAR (OPTIONAL – LOOKS PREMIUM)
+   ===================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
