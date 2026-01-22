@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:5000";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export const apiFetch = async (
   endpoint: string,
@@ -10,13 +11,14 @@ export const apiFetch = async (
     ...options,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: token ? `Bearer ${token}` : "",
       ...(options.headers || {}),
     },
   });
 
   if (!res.ok) {
-    throw new Error("API Error");
+    const err = await res.text();
+    throw new Error(err || "API Error");
   }
 
   return res.json();
